@@ -14,6 +14,9 @@ class Bernoulli(abstractmodel.AbstractModel):
     self.init_sigma = config.init_sigma
 
   def make_init_params(self, rng):
+    # Handle batched keys from jax.random.split(key, num_models)
+    if rng.ndim > 1:
+      rng = rng[0]
     params = {}
     params['params'] = (
         jax.random.normal(rng, shape=self.shape) * self.init_sigma

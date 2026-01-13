@@ -1,7 +1,10 @@
 """Load MazClique graphs."""
 
 import os
-import pickle5 as pickle
+try:
+    import pickle5 as pickle
+except ImportError:
+    import pickle
 import jax.numpy as jnp
 import networkx as nx
 import numpy as np

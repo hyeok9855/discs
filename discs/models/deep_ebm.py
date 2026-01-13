@@ -30,9 +30,12 @@ class DeepEBM(abstractmodel.AbstractModel):
       path = config.data_path
       try:
         model = pickle.load(open(os.path.join(path, 'params.pkl'), 'rb'))
-      except:
-        import pickle5
-        model = pickle5.load(open(os.path.join(path, 'params.pkl'), 'rb'))
+      except Exception:
+        try:
+            import pickle5
+            model = pickle5.load(open(os.path.join(path, 'params.pkl'), 'rb'))
+        except ImportError:
+            raise
       with config.unlocked():
         config.params = flax.core.frozen_dict.freeze(model['params'])
       model_config = yaml.unsafe_load(

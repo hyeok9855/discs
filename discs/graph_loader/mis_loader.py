@@ -6,7 +6,10 @@ from discs.graph_loader import common as data_common
 import jax.numpy as jnp
 import networkx as nx
 import numpy as np
-import pickle5 as pickle
+try:
+    import pickle5 as pickle
+except ImportError:
+    import pickle
 from pysat.formula import CNF
 
 

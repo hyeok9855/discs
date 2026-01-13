@@ -22,7 +22,7 @@ setup(
         'optax',
         'python-sat',
         'tensorboard',
-        'pickle5',
+        'pickle5; python_version < "3.8"',
         'nltk',
     ],
 )
